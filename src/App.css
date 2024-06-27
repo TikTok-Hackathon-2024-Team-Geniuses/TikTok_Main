@@ -37,6 +37,17 @@
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.footer {
+  position: absolute; /* or fixed */
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+hr {
+  margin-top: 90px;
+  border: none; /* Remove default border */
+  height: 1px; /* Set desired height of the line */
+  background-color: white; /* Set color of the line */
+  width: 100%; /* Ensure it spans the entire width */
 }
