@@ -31,6 +31,7 @@ function App() {
       </p>
       <hr></hr>
       <Footer />
+
     </>
   );
 }
