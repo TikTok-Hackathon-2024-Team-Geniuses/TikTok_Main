@@ -5,7 +5,6 @@ const videos = [
   "https://www.w3schools.com/html/mov_bbb.mp4",
   "https://www.w3schools.com/html/movie.mp4",
   "https://archive.org/download/Sintel/sintel-2048-surround.mp4",
-  "https://archive.org/download/TearsOfSteel/TearsOfSteel_4096-h264.mp4",
   "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
 ];
 
