@@ -1,8 +1,11 @@
+/* General styling for root and logo */
 #root {
-  max-width: 1280px;
+  /* Typical mobile screen width */
+  /* max-width: 480px;  */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  background-color: #42404096; /* Ensure background color covers the full width */
 }
 
 .logo {
@@ -18,6 +21,7 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Animation for spinning logo */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,10 +37,12 @@
   }
 }
 
+/* Card styling */
 .card {
   padding: 2em;
 }
 
+/* Footer styling */
 .footer {
   position: absolute; /* or fixed */
   top: 95%;
@@ -44,10 +50,52 @@
   transform: translate(-50%, -50%);
 }
 
+/* Horizontal line styling */
 hr {
   margin-top: 90px;
   border: none; /* Remove default border */
   height: 1px; /* Set desired height of the line */
   background-color: white; /* Set color of the line */
   width: 100%; /* Ensure it spans the entire width */
+}
+
+/* General body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* App container styling */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Media queries for smaller mobile view */
+@media (max-width: 480px) {
+  #root {
+    padding: 0.25rem;
+  }
+
+  .logo {
+    height: 3em;
+    padding: 0.75em;
+  }
+
+  .card {
+    padding: 0.5em;
+  }
+
+  .footer {
+    top: 85%;
+  }
+
+  .App {
+    padding: 0.5rem;
+  }
 }

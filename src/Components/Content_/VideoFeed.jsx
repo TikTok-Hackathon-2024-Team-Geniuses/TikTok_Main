@@ -1,5 +1,18 @@
-import VideoPlayer from "./VideoPlayer";
-import { useInView } from "react-intersection-observer";
+import React, { useRef, useEffect, useState } from "react";
+import styled from "styled-components";
+import VideoItem from "./VideoItem";
+import ActionButtons from "../Content_/ActionButtons";
+
+const VideoFeedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+`;
 
 const videos = [
   "https://www.w3schools.com/html/mov_bbb.mp4",
@@ -13,38 +26,39 @@ const videos = [
  * each containing a video player.
  */
 const VideoFeed = () => {
-  // Iterate over the array of video URLs and render a VideoItem component
-  // for each one, passing the URL as a prop.
+  const [visibleIndex, setVisibleIndex] = useState(0);
+  const videoRefs = useRef([]);
+
+  const handleScroll = () => {
+    const index = videoRefs.current.findIndex((videoRef) => {
+      const rect = videoRef.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= window.innerHeight;
+    });
+
+    if (index !== -1 && index !== visibleIndex) {
+      setVisibleIndex(index);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [visibleIndex]);
+
   return (
-    <div>
+    <VideoFeedContainer onScroll={handleScroll}>
       {videos.map((src, index) => (
-        // Render a VideoItem component for each video URL.
-        // Pass the URL as a prop to the VideoItem component.
-        <VideoItem key={index} src={src} />
+        <VideoItem
+          key={index}
+          src={src}
+          ref={(el) => (videoRefs.current[index] = el)}
+          isVisible={index === visibleIndex}
+        />
       ))}
-    </div>
-  );
-};
-
-/**
- * VideoItem component that renders a video player with a given source URL.
- */
-const VideoItem = ({ src }) => {
-  // Get the reference to the video player element and the visibility state
-  // using the useInView hook from the react-intersection-observer library.
-  const { ref, inView } = useInView({
-    threshold: 0.5, // Adjust threshold as needed
-  });
-
-  // Render the video player with the provided source URL and visibility state.
-  return (
-    <div
-      ref={ref} // Set the reference to the video player element.
-      style={{ height: "100vh", marginBottom: "10px" }}
-    >
-      {/* Render the VideoPlayer component with the source URL and visibility state. */}
-      <VideoPlayer src={src} isVisible={inView} />
-    </div>
+      <ActionButtons />
+    </VideoFeedContainer>
   );
 };
 
