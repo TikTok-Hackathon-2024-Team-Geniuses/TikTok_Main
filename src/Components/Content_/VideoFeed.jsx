@@ -14,11 +14,58 @@ const VideoFeedContainer = styled.div`
   scroll-snap-type: y mandatory;
 `;
 
+// Local video file paths and their corresponding image paths
 const videos = [
-  "https://www.w3schools.com/html/mov_bbb.mp4",
-  "https://www.w3schools.com/html/movie.mp4",
-  "https://archive.org/download/Sintel/sintel-2048-surround.mp4",
-  "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
+  {
+    videoSrc: 'src/Components/Content_/tiktok_videos/video1.mp4',
+    images: [
+      'src/Components/Content_/images/image1_1.jpg',
+      'src/Components/Content_/images/image1_2.jpg',
+      'src/Components/Content_/images/image1_3.jpg',
+      'src/Components/Content_/images/image1_4.jpg',
+      'src/Components/Content_/images/image1_5.jpg',
+    ],
+  },
+  {
+    videoSrc: 'src/Components/Content_/tiktok_videos/video2.mp4',
+    images: [
+      'src/Components/Content_/images/image2_1.jpg',
+      'src/Components/Content_/images/image2_2.jpg',
+      'src/Components/Content_/images/image2_3.jpg',
+      'src/Components/Content_/images/image2_4.jpg',
+      'src/Components/Content_/images/image2_5.jpg',
+    ],
+  },
+  {
+    videoSrc: 'src/Components/Content_/tiktok_videos/video3.mp4',
+    images: [
+      'src/Components/Content_/images/image3_1.jpg',
+      'src/Components/Content_/images/image3_2.jpg',
+      'src/Components/Content_/images/image3_3.jpg',
+      'src/Components/Content_/images/image3_4.jpg',
+      'src/Components/Content_/images/image3_5.jpg',
+    ],
+  },
+  {
+    videoSrc: 'src/Components/Content_/tiktok_videos/video4.mp4',
+    images: [
+      'src/Components/Content_/images/image4_1.jpg',
+      'src/Components/Content_/images/image4_2.jpg',
+      'src/Components/Content_/images/image4_3.jpg',
+      'src/Components/Content_/images/image4_4.jpg',
+      'src/Components/Content_/images/image4_5.jpg',
+    ],
+  },
+  {
+    videoSrc: 'src/Components/Content_/tiktok_videos/video5.mp4',
+    images: [
+      'src/Components/Content_/images/image5_1.jpg',
+      'src/Components/Content_/images/image5_2.jpg',
+      'src/Components/Content_/images/image5_3.jpg',
+      'src/Components/Content_/images/image5_4.jpg',
+      'src/Components/Content_/images/image5_5.jpg',
+    ],
+  },
 ];
 
 /**
@@ -48,18 +95,73 @@ const VideoFeed = () => {
   }, [visibleIndex]);
 
   return (
-    <VideoFeedContainer onScroll={handleScroll}>
+    <div>
       {videos.map((src, index) => (
-        <VideoItem
-          key={index}
-          src={src}
-          ref={(el) => (videoRefs.current[index] = el)}
-          isVisible={index === visibleIndex}
-        />
+        // Render a VideoItem component for each video URL.
+        // Pass the URL as a prop to the VideoItem component.
+        <VideoItem key={index} src={src} />
       ))}
-      <ActionButtons />
-    </VideoFeedContainer>
+    </div>
   );
+};
+
+/**
+ * VideoItem component that renders a video player with a given source URL.
+ */
+const VideoItem = ({ src }) => {
+  // Get the reference to the video player element and the visibility state
+  // using the useInView hook from the react-intersection-observer library.
+  const { ref, inView } = useInView({
+    threshold: 0.5, // Adjust threshold as needed
+  });
+
+  // Render the video player with the provided source URL and visibility state.
+  return (
+    <div
+      ref={ref} // Set the reference to the video player element.
+      style={{ height: "100vh", marginBottom: "10px" }}
+    >
+      {/* Render the VideoPlayer component with the source URL and visibility state. */}
+      <VideoPlayer src={src} isVisible={inView} />
+    </div>
+  );
+};
+
+const styles = {
+  overlay: {
+    position: 'absolute',
+    bottom: '65px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '100%', // change box sizes
+    display: 'flex',
+    justifyContent: 'space-around',
+    padding: '0 1vw',
+  },
+  boxContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '95%',
+  },
+  box: {
+    background: 'white',
+    padding: '1px',
+    borderRadius: '5px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    width: '18%', // Ensure the boxes are square
+    aspectRatio: '1',
+    margin: '0 4px',
+    position: 'relative',
+  },
+  image: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    borderRadius: '5px',
+  },
 };
 
 export default VideoFeed;
