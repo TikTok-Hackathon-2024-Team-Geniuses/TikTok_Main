@@ -58,7 +58,7 @@ This will start the Vite development server. Open your browser and navigate to `
 Here's an overview of the project structure, but will be updated when it's completed:
 
 ```
-tiktok-clone/
+Tiktok-Main/
 ├── public/                 # Static assets
 ├── src/
 │   ├── Components/
