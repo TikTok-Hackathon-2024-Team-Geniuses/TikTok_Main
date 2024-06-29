@@ -1,6 +1,6 @@
-# 🎥 React + Vite TikTok Clone Project
+# 🎥 React + Vite TikTok Feature Project
 
-Welcome to the TikTok clone project built with React and Vite! This project features a video feed with a bottom navigation bar, closely mimicking the UI and functionality of the TikTok app. Exciting updates and new features are on the way!
+Welcome to the TikTok Feature project built with React and Vite! This project features a video feed with a bottom navigation bar, closely mimicking the UI and functionality of the TikTok app. Exciting updates and new features are on the way!
 
 ## ✨ Features
 
