@@ -1,27 +1,7 @@
-import React from "react";
+import styled from "styled-components";
 import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
 import { videos } from "./FetchVideoData";
-/**
- * VideoFeed component that renders a list of VideoItem components,
- * each containing a video player.
- */
-const VideoFeed = () => {
-  return (
-    <FeedContainer>
-      {videos.map((video, index) => (
-        <VideoItem
-          key={index}
-          videoSrc={video.videoSrc}
-          images={video.images}
-        />
-      ))}
-    </FeedContainer>
-  );
-};
-
-export default VideoFeed;
 
 const FeedContainer = styled.div`
   display: flex;
@@ -29,7 +9,6 @@ const FeedContainer = styled.div`
   align-items: center;
   background-color: black;
   height: 100vh;
-  width: 100vw;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 `;
@@ -37,9 +16,11 @@ const FeedContainer = styled.div`
 const VideoItemContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 70px); /* Adjust height to fit above bottom bar */
   scroll-snap-align: start;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Overlay = styled.div`
@@ -81,8 +62,23 @@ const Image = styled.img`
 `;
 
 /**
- * VideoItem component that renders a video player with a given source URL.
+ * VideoFeed component that renders a list of VideoItem components,
+ * each containing a video player.
  */
+const VideoFeed = () => {
+  return (
+    <FeedContainer>
+      {videos.map((video, index) => (
+        <VideoItem
+          key={index}
+          videoSrc={video.videoSrc}
+          images={video.images}
+        />
+      ))}
+    </FeedContainer>
+  );
+};
+
 const VideoItem = ({ videoSrc, images }) => {
   const { ref, inView } = useInView({
     threshold: 0.5, // Adjust threshold as needed
@@ -103,3 +99,5 @@ const VideoItem = ({ videoSrc, images }) => {
     </VideoItemContainer>
   );
 };
+
+export default VideoFeed;

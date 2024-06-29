@@ -15,12 +15,12 @@ const ActionButtonsContainer = styled.div`
 const ActionButton = styled.button`
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: color 0.3s;
-
+  shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   &:hover {
     color: #ff0055;
   }

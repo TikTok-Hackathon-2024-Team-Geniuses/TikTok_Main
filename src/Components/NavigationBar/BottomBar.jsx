@@ -13,7 +13,8 @@ const BottomBarContainer = styled.div`
   background-color: #000;
   padding: 10px 0;
   border-top: 1px solid #444;
-  z-index: 1000; /* High z-index to ensure it stays on top */
+  border-radius: 20px 20px 0 0;
+  z-index: 1000;
 `;
 
 const NavButton = styled.button`
@@ -30,7 +31,16 @@ const NavButton = styled.button`
   &:hover {
     color: #ff0055;
   }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
+
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -39,6 +49,7 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
+
 const TiktokButtonWrapper = styled.div`
   background: linear-gradient(to right, #00f2ea, #ff0055);
   border-radius: 50px;
@@ -46,19 +57,34 @@ const TiktokButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 40px;
   color: white;
   cursor: pointer;
+
   &:hover {
     animation: ${rotate} 1s linear infinite;
   }
-`;
 
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
+`;
 
 const NavLabel = styled.span`
   font-size: 12px;
   margin-top: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 8px;
+  }
 `;
 
 const BottomBar = () => {

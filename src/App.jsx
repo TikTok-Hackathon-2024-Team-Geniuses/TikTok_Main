@@ -3,22 +3,28 @@ import styled from "styled-components";
 import "./App.css";
 import VideoFeed from "./Components/Content_/VideoFeed";
 import BottomBar from "./Components/NavigationBar/BottomBar";
-
+import ActionButtons from "./Components/Content_/ActionButtons";
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: black;
   color: white;
-  min-height: 100vh;
-  width: 100%;
+  overflow: hidden;
 `;
 
 const AppContent = styled.div`
-  flex: 1;
+
   width: 100%;
-  overflow: auto;
-  padding-bottom: 50px; /* Space for bottom bar */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Space for BottomBar */
+`;
+
+const StyledBottomBar = styled(BottomBar)`
+  height: 70px; /* Fixed height for BottomBar */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 function App() {
@@ -26,8 +32,9 @@ function App() {
     <AppContainer>
       <AppContent>
         <VideoFeed />
+        <ActionButtons />
       </AppContent>
-      <BottomBar />
+      <StyledBottomBar />
     </AppContainer>
   );
 }
