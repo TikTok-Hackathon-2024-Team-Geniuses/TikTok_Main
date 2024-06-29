@@ -18,17 +18,17 @@ const VideoPlayer = ({ src, isVisible }) => {
   /**
    * Effect that plays or pauses the video based on the visibility.
    */
+
   useEffect(() => {
-    const video = videoRef.current;
-    if (isVisible && video.paused) {
-      video.play();
-    } else if (!isVisible && !video.paused) {
-      video.pause();
+    if (isVisible) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
     }
   }, [isVisible]);
 
   // Render the video element with the provided source and styling.
-  return <StyledVideo ref={videoRef} src={src} loop muted controls />;
+  return <StyledVideo ref={videoRef} src={src} loop controls />;
 };
 
 export default VideoPlayer;
