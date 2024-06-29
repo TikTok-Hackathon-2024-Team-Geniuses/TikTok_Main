@@ -53,9 +53,9 @@ npm run dev
 
 This will start the Vite development server. Open your browser and navigate to `http://localhost:3000/` to see the app running. 🚀
 
-## 📂 Project Structure
+## 📂 Project Structure 
 
-Here's an overview of the project structure:
+Here's an overview of the project structure, but will be updated when it's completed:
 
 ```
 tiktok-clone/
