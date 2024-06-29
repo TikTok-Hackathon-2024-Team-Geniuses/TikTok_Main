@@ -51,7 +51,7 @@ Once the dependencies are installed, start the development server.
 npm run dev
 ```
 
-This will start the Vite development server. Open your browser and navigate to `http://localhost:3000/` to see the app running. 🚀
+This will start the Vite development server. Open your browser and navigate to `http://localhost:3000/` (sometimes it will generate a different port number eg: #:5147 ) to see the app running. 🚀
 
 ## 📂 Project Structure 
 
