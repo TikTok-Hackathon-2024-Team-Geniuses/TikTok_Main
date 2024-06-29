@@ -1,39 +1,41 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React from "react";
+import styled from "styled-components";
 import "./App.css";
-import Footer from "./Components/Footer";
 import VideoFeed from "./Components/Content_/VideoFeed";
+import BottomBar from "./Components/NavigationBar/BottomBar";
+import ActionButtons from "./Components/Content_/ActionButtons";
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+`;
+
+const AppContent = styled.div`
+
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 70px; /* Space for BottomBar */
+`;
+
+const StyledBottomBar = styled(BottomBar)`
+  height: 70px; /* Fixed height for BottomBar */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+`;
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <VideoFeed />
-      <hr></hr>
-      <Footer />
-    </>
+    <AppContainer>
+      <AppContent>
+        <VideoFeed />
+        <ActionButtons />
+      </AppContent>
+      <StyledBottomBar />
+    </AppContainer>
   );
 }
 
