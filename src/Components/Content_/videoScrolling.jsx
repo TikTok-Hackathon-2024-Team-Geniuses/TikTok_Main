@@ -1,11 +1,7 @@
 
 import VideoPlayer from "./Components/VideoPlayer";
+import VideoFeed from "./VideoFeed";
 import { useInView } from "react-intersection-observer";
-
-const videos = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://www.w3schools.com/html/movieh.mp4",
-];
 
 const VideoFeed = () => {
   return (
