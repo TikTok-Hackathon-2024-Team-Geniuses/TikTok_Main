@@ -31,8 +31,8 @@ Follow these steps to set up and run the project locally:
 First, clone the repository to your local machine using Git.
 
 ```sh
-git clone https://github.com/your-username/tiktok-clone.git
-cd tiktok-clone
+git clone https://github.com/TikTok-Hackathon-2024-Team-Geniuses/TikTok_Main.git
+cd TikTok_Main
 ```
 
 ### 2. Install Dependencies
@@ -51,14 +51,14 @@ Once the dependencies are installed, start the development server.
 npm run dev
 ```
 
-This will start the Vite development server. Open your browser and navigate to `http://localhost:3000/` to see the app running. 🚀
+This will start the Vite development server. Open your browser and navigate to `http://localhost:3000/` (sometimes it will generate a different port number eg: #:5147 ) to see the app running. 🚀
 
 ## 📂 Project Structure 
 
 Here's an overview of the project structure, but will be updated when it's completed:
 
 ```
-tiktok-clone/
+Tiktok-Main/
 ├── public/                 # Static assets
 ├── src/
 │   ├── Components/
