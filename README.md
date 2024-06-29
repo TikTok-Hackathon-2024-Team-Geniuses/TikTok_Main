@@ -31,8 +31,8 @@ Follow these steps to set up and run the project locally:
 First, clone the repository to your local machine using Git.
 
 ```sh
-git clone https://github.com/your-username/tiktok-clone.git
-cd tiktok-clone
+git clone https://github.com/TikTok-Hackathon-2024-Team-Geniuses/TikTok_Main.git
+cd TikTok_Main
 ```
 
 ### 2. Install Dependencies
