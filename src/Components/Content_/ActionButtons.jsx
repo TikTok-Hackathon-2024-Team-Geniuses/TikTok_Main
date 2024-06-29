@@ -15,7 +15,7 @@ const ActionButtonsContainer = styled.div`
 const ActionButton = styled.button`
   background: none;
   border: none;
-  color: black;
+  color: pink;
   font-size: 24px;
   margin-bottom: 10px;
   cursor: pointer;
