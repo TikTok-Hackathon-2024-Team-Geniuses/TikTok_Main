@@ -2,7 +2,15 @@ import styled from "styled-components";
 import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos } from "./FetchVideoData";
+import { useState } from "react";
 
+const Div = styled.div`
+  height: 80vh; /* 80% of the viewport height */
+  width: 100%; /* 100% of the viewport width */
+  background-color: white;
+  transform: translateY(20vh);
+  border-radius: 30px 30px 0 0;
+`;
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,21 +91,49 @@ const VideoItem = ({ videoSrc, images }) => {
   const { ref, inView } = useInView({
     threshold: 0.5, // Adjust threshold as needed
   });
-
+  const [modal, setModal] = useState(false);
+  function toggleBtn() {
+    setModal(true);
+    if (modal) {
+      setModal(false);
+    }
+  }
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
+
       <Overlay>
-        <BoxContainer>
-          {images.map((imgSrc, index) => (
-            <Box key={index}>
-              <Image src={imgSrc} alt={`Box ${index + 1}`} />
-            </Box>
-          ))}
-        </BoxContainer>
+        {modal ? (
+          <BoxModal toggleBtn={toggleBtn} />
+        ) : (
+          <BoxContainer>
+            {images.map((imgSrc, index) => (
+              <Box key={index}>
+                <Image
+                  onClick={() => toggleBtn()}
+                  src={imgSrc}
+                  alt={`Box ${index + 1}`}
+                />
+              </Box>
+            ))}
+          </BoxContainer>
+        )}
       </Overlay>
     </VideoItemContainer>
   );
 };
+function BoxModal({ toggleBtn }) {
+  return (
+    <Div className="modal">
+      <button onClick={() => toggleBtn()}>Closing Button</button>
+      <div className="photoarea"></div>
+      <div className="infoarea"></div>{" "}
+      <div className="modalbuttons">
+        <div>See All Details</div>
+        <div>Add To Card</div>
+      </div>
+    </Div>
+  );
+}
 
 export default VideoFeed;
