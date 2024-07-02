@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import "./App.css";
 import VideoFeed from "./Components/Content_/VideoFeed";
@@ -14,7 +13,6 @@ const AppContainer = styled.div`
 `;
 
 const AppContent = styled.div`
-
   width: 100%;
   overflow-y: auto;
   padding-bottom: 70px; /* Space for BottomBar */
