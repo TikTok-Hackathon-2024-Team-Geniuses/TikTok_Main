@@ -7,8 +7,9 @@ import styled from "styled-components";
  */
 const StyledVideo = styled.video`
   width: 100%;
-  height: 92vh; 
+  height: 100%;
   object-fit: cover;
+  z-index: 0;
 `;
 
 const VideoPlayer = ({ src, isVisible }) => {

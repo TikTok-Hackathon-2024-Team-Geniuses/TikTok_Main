@@ -4,27 +4,27 @@ import "./App.css";
 import VideoFeed from "./Components/Content_/VideoFeed";
 import BottomBar from "./Components/NavigationBar/BottomBar";
 import ActionButtons from "./Components/Content_/ActionButtons";
-
 const AppContainer = styled.div`
-  display: grid;
-  grid-template-rows: 1fr auto; /* AppContent takes available space, BottomBar has fixed size */
-  height: 100vh; /* Full viewport height */
-  background-color: black;
-  color: white;
-`;
-
-const AppContent = styled.div`
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 70px); /* Adjust height to fit above bottom bar */
+  background-color: black;
+  color: white;
+  overflow: hidden;
 `;
 
-const StyledBottomBar = styled.div`
-  height: 70px; /* Fixed height for BottomBar */
+const AppContent = styled.div`
+
   width: 100%;
-  flex-shrink: 0; /* Prevent BottomBar from shrinking */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Space for BottomBar */
+`;
+
+const StyledBottomBar = styled(BottomBar)`
+  height: 70px; /* Fixed height for BottomBar */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 function App() {
@@ -34,9 +34,7 @@ function App() {
         <VideoFeed />
         <ActionButtons />
       </AppContent>
-      <StyledBottomBar>
-        <BottomBar />
-      </StyledBottomBar>
+      <StyledBottomBar />
     </AppContainer>
   );
 }
