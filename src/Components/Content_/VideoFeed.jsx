@@ -5,7 +5,6 @@ import { videos } from "./FetchVideoData";
 import { useState } from "react";
 
 const Div = styled.div`
-  height: 80vh; /* 80% of the viewport height */
   width: 100%; /* 100% of the viewport width */
   background-color: white;
   transform: translateY(20vh);
@@ -24,7 +23,7 @@ const FeedContainer = styled.div`
 const VideoItemContainer = styled.div`
   position: relative;
   width: 100%;
-  height: calc(100vh - 70px); /* Adjust height to fit above bottom bar */
+  height: 100vh; /* Adjust height to fit above bottom bar */
   scroll-snap-align: start;
   display: flex;
   justify-content: center;
