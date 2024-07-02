@@ -1,22 +1,35 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos } from "./FetchVideoData";
 import { useState } from "react";
+
+const scrollUp = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(20vh);
+  }
+`;
 
 const Div = styled.div`
   height: 80vh; /* 80% of the viewport height */
   width: 100%; /* 100% of the viewport width */
   background-color: white;
   transform: translateY(20vh);
-  border-radius: 30px 30px 0 0;
+  border-radius: 25px 25px 0 0;
+  position: relative;
+  animation: ${scrollUp} 0.1s ease-out;
 `;
+
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: black;
   height: 100vh;
+  width: 100%;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 `;
@@ -68,6 +81,52 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 5px;
 `;
+
+const BackButton = styled.button`
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.7em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  margin-left: 25px;
+`;
+
+const CartButton = styled.button`
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: .8em 2.5em;
+  font-size: 1.12em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ff0073;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  position: absolute;
+  top: 500px;
+  right: 55px;
+`;
+
+const BuyNowButton = styled.button`
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: .8em 2.7em;
+  font-family: inherit;
+  font-size: 1.12em;
+  background-color: #d1d1d1;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  position: absolute;
+  top: 500px;
+  left: 55px;
+  color: black;
+`
 
 /**
  * VideoFeed component that renders a list of VideoItem components,
@@ -122,15 +181,16 @@ const VideoItem = ({ videoSrc, images }) => {
     </VideoItemContainer>
   );
 };
+
 function BoxModal({ toggleBtn }) {
   return (
     <Div className="modal">
-      <button onClick={() => toggleBtn()}>Closing Button</button>
+      <BackButton onClick={() => toggleBtn()}>Back</BackButton>
       <div className="photoarea"></div>
       <div className="infoarea"></div>{" "}
       <div className="modalbuttons">
-        <div>See All Details</div>
-        <div>Add To Card</div>
+        <BuyNowButton onClick={() => toggleBtn()}>Buy now</BuyNowButton>
+        <CartButton onClick={() => toggleBtn()}>Add to cart</CartButton>
       </div>
     </Div>
   );
