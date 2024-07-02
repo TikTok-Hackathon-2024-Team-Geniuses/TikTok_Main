@@ -21,7 +21,7 @@ const VideoFeed = () => {
 const VideoItem = ({ src }) => {
   // Get the reference to the video player element and the visibility state
   const { ref, inView } = useInView({
-    threshold: 0.2, // The video is considered in view if 20% of it is visible
+    threshold: 0.5, // The video is considered in view if 20% of it is visible
   });
 
   // Render the video player with the provided source URL and visibility state.
