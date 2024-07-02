@@ -1,7 +1,3 @@
-html {
-  overflow: hidden;
-}
-
 .action__button__container > div {
   position: fixed;
   right: 10px;
@@ -21,7 +17,6 @@ html {
   border-radius: 20%;
   font-size: 24px;
   cursor: pointer;
-  color: pink;
   transition: color 0.3s;
 }
 
@@ -31,7 +26,7 @@ html {
 
 .modal__container {
   position: absolute;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: white;
   color: black;
