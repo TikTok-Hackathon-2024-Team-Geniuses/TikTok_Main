@@ -3,7 +3,6 @@
   /* Typical mobile screen width */
   /* max-width: 480px;  */
   margin: 0 auto;
-  padding: 1rem;
   text-align: center;
   background-color: #42404096; /* Ensure background color covers the full width */
 }
