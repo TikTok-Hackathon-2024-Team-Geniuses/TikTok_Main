@@ -4,23 +4,76 @@ export const videos = [
   {
     videoSrc: "src/Components/Content_/tiktok_videos/video1.mp4",
     images: [
-      "src/Components/Content_/images/image1_1.jpg",
-      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfRU37oeCnyrimWEkpDelrdyxb0Va2TiWvYF3-Zc8VLlWUlNNQG-w_UDqrrS7hFuzUGepV6Ve318C0owJQ4cy1s909xg-GymJ85sJlmLlBs271OS2yqxm6&usqp=CAE",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1-9zt0GzBMPTAxVXv-HNMyYMGY1nUGX6ew&s",
-      "src/Components/Content_/images/image1_4.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9PUKgpvHenZkiAEMGH3g8-Y8in69mpqqXQ&s",
+      {
+        src: "src/Components/Content_/images/image1_1.jpg",
+        id: "Womens Pink Sweatshirt",
+        price: "$35.99",
+        color: "Pink",
+        colorCode: "#e5bdd2"
+      },
+      {
+        src: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfRU37oeCnyrimWEkpDelrdyxb0Va2TiWvYF3-Zc8VLlWUlNNQG-w_UDqrrS7hFuzUGepV6Ve318C0owJQ4cy1s909xg-GymJ85sJlmLlBs271OS2yqxm6&usqp=CAE",
+        id: "",
+        price: "",
+        color: ""
+      },
+      {
+        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1-9zt0GzBMPTAxVXv-HNMyYMGY1nUGX6ew&s",
+        id: "Womens Pink Sweatshirt",
+        price: "$35.99",
+        color: "Pink"
+      },
+      {
+        src: "src/Components/Content_/images/image1_4.jpg",
+        id: "Womens Pink Sweatshirt",
+        price: "$35.99",
+        color: "Pink"
+      },
+      {
+        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9PUKgpvHenZkiAEMGH3g8-Y8in69mpqqXQ&s",
+        id: "Womens Pink Sweatshirt",
+        price: "$35.99",
+        color: "Pink"
+      },
     ],
   },
+
   {
     videoSrc: "src/Components/Content_/tiktok_videos/video2.mp4",
     images: [
-      "src/Components/Content_/images/image2_1.jpg",
-      "https://m.media-amazon.com/images/I/71er38OlzHL._SY342_.jpg",
-      "src/Components/Content_/images/image2_4.png",
-      "https://m.media-amazon.com/images/I/71Q70VZAEeL._AC_SX522_.jpg",
-      "src/Components/Content_/images/image2_5.png",
+      {
+        src: "src/Components/Content_/images/image2_1.jpg",
+        id: "",
+        price: "",
+        color: ""
+      },
+      {
+        src: "https://m.media-amazon.com/images/I/71er38OlzHL._SY342_.jpg",
+        id: "",
+        price: "",
+        color: ""
+      },
+      {
+        src: "src/Components/Content_/images/image2_4.png",
+        id: "",
+        price: "",
+        color: ""
+      },
+      {
+        src: "https://m.media-amazon.com/images/I/71Q70VZAEeL._AC_SX522_.jpg",
+        id: "",
+        price: "",
+        color: ""
+      },
+      {
+        src: "src/Components/Content_/images/image2_5.png",
+        id: "",
+        price: "",
+        color: ""
+      },
     ],
   },
+
   {
     videoSrc: "src/Components/Content_/tiktok_videos/video3.mp4",
     images: [
