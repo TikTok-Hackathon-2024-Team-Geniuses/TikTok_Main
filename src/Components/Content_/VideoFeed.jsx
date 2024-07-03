@@ -12,7 +12,11 @@ const scrollUp = keyframes`
     transform: translateY(20vh);
   }
 `;
-
+const PhotoArea = styled.img`
+margin-top: 80px;
+  height: 200px;
+  width: 100px;
+`;
 const Div = styled.div`
   height: 80vh; /* 80% of the viewport height */
   width: 100%; /* 100% of the viewport width */
@@ -83,7 +87,7 @@ const Image = styled.img`
 `;
 
 const BackButton = styled.button`
-  border-radius: 8px;
+  /* border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.7em 1.2em;
   font-size: 1em;
@@ -95,13 +99,17 @@ const BackButton = styled.button`
   position: absolute;
   top: 30px;
   left: 10px;
-  margin-left: 25px;
+  margin-left: 25px; */
+  width: 60px;
+  height: 10px;
+  background-color: gray;
+  margin-top: 20px;
 `;
 
 const CartButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: .8em 2.5em;
+  padding: 0.8em 2.5em;
   font-size: 1.12em;
   font-weight: 500;
   font-family: inherit;
@@ -116,7 +124,7 @@ const CartButton = styled.button`
 const BuyNowButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: .8em 2.7em;
+  padding: 0.8em 2.7em;
   font-family: inherit;
   font-size: 1.12em;
   background-color: #d1d1d1;
@@ -126,7 +134,7 @@ const BuyNowButton = styled.button`
   top: 500px;
   left: 55px;
   color: black;
-`
+`;
 
 /**
  * VideoFeed component that renders a list of VideoItem components,
@@ -151,11 +159,14 @@ const VideoItem = ({ videoSrc, images }) => {
     threshold: 0.5, // Adjust threshold as needed
   });
   const [modal, setModal] = useState(false);
-  function toggleBtn() {
+  const [selectedImage, setSelectedImage] = useState();
+  function toggleBtn(imgSrc) {
     setModal(true);
+    setSelectedImage(imgSrc);
     if (modal) {
       setModal(false);
     }
+    console.log(selectedImage);
   }
   return (
     <VideoItemContainer ref={ref}>
@@ -163,13 +174,13 @@ const VideoItem = ({ videoSrc, images }) => {
 
       <Overlay>
         {modal ? (
-          <BoxModal toggleBtn={toggleBtn} />
+          <BoxModal toggleBtn={toggleBtn} selectedImage={selectedImage} />
         ) : (
           <BoxContainer>
             {images.map((imgSrc, index) => (
               <Box key={index}>
                 <Image
-                  onClick={() => toggleBtn()}
+                  onClick={() => toggleBtn(imgSrc)}
                   src={imgSrc}
                   alt={`Box ${index + 1}`}
                 />
@@ -182,11 +193,13 @@ const VideoItem = ({ videoSrc, images }) => {
   );
 };
 
-function BoxModal({ toggleBtn }) {
+function BoxModal({ toggleBtn, selectedImage }) {
   return (
     <Div className="modal">
-      <BackButton onClick={() => toggleBtn()}>Back</BackButton>
-      <div className="photoarea"></div>
+      <BackButton onClick={() => toggleBtn()}></BackButton>
+      <div>
+        <PhotoArea src={selectedImage} />
+      </div>
       <div className="infoarea"></div>{" "}
       <div className="modalbuttons">
         <BuyNowButton onClick={() => toggleBtn()}>Buy now</BuyNowButton>
