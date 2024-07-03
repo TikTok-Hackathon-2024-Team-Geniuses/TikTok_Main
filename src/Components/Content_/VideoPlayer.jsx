@@ -7,7 +7,7 @@ import styled from "styled-components";
  */
 const StyledVideo = styled.video`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   z-index: 0;
 `;

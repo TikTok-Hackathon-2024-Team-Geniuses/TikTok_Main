@@ -4,9 +4,6 @@ import { FaHome, FaSearch, FaBell, FaUser } from "react-icons/fa";
 import { IoIosAddCircle } from "react-icons/io";
 
 const BottomBarContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -14,7 +11,15 @@ const BottomBarContainer = styled.div`
   padding: 10px 0;
   border-top: 1px solid #444;
   border-radius: 20px 20px 0 0;
-  z-index: 1000;
+
+
+  @media (max-width: 768px) {
+    padding: 8px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 0;
+  }
 `;
 
 const NavButton = styled.button`
