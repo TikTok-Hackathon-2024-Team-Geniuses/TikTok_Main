@@ -72,6 +72,7 @@ const Box = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 18%;
   aspect-ratio: 1;
+
   margin: 0 4px;
   position: relative;
 `;
@@ -109,30 +110,30 @@ const BackButton = styled.button`
 const CartButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.8em 2.5em;
-  font-size: 1.12em;
+  padding: .8em 1.5em;
+  font-size: 1.1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #ff0073;
   cursor: pointer;
   transition: border-color 0.25s;
   position: absolute;
-  top: 500px;
-  right: 55px;
+  top: 480px;
+  right: 75px;
 `;
 
 const BuyNowButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.8em 2.7em;
+  padding: .8em 1.7em;
   font-family: inherit;
-  font-size: 1.12em;
+  font-size: 1.1em;
   background-color: #d1d1d1;
   cursor: pointer;
   transition: border-color 0.25s;
   position: absolute;
-  top: 500px;
-  left: 55px;
+  top: 480px;
+  left: 80px;
   color: black;
 `;
 
