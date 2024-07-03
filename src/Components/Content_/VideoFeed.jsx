@@ -35,7 +35,7 @@ const FeedContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: black;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   overflow-y: auto;
   scroll-snap-type: y mandatory;

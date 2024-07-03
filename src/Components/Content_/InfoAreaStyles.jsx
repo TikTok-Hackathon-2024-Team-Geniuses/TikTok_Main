@@ -14,16 +14,15 @@ export const ItemName = styled.p`
 `;
 
 export const ItemPrice = styled.p`
-  font-size: 1.5rem; /* Larger font size for the price */
+  font-size: 1.2rem; /* Larger font size for the price */
   color: black; /* Amazon's price color */
-  font-weight: bold; /* Make the price bold */
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   margin-left: 30px;
   display: flex;
 `;
 
 export const ItemColor = styled.p`
-  font-size: 1rem; /* Smaller font size for the color description */
+  font-size: .8rem; /* Smaller font size for the color description */
   color: #555; /* Lighter color for the color description */
   margin-top: 8px; /* Spacing above the color description */
   display: flex; /* To align color swatches horizontally */
@@ -44,4 +43,5 @@ export const ColorSwatch = styled.span`
   border: 1px solid #ddd;
   border-radius: 50%;
   margin-bottom: 5px; /* Adjust margin to space elements properly */
+  margin-top: 0px;
 `;
