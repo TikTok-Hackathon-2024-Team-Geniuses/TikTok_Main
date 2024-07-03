@@ -8,6 +8,7 @@ function BoxModal({ toggleBar, isBarOpen }) {
     background-color: white;
     transform: translateY(20vh);
     border-radius: 30px 30px 0 0;
+    padding: 200px;
     z-index: 1;
   `;
   return (

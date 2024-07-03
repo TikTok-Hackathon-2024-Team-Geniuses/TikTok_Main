@@ -79,10 +79,6 @@ body {
 
 /* Media queries for smaller mobile view */
 @media (max-width: 480px) {
-  #root {
-    padding: 0.25rem;
-  }
-
   .logo {
     height: 3em;
     padding: 0.75em;
@@ -94,9 +90,5 @@ body {
 
   .footer {
     top: 85%;
-  }
-
-  .App {
-    padding: 0.5rem;
   }
 }
