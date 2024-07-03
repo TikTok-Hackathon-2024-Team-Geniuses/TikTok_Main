@@ -20,7 +20,7 @@ const Div = styled.div`
   border-radius: 25px 25px 0 0;
   position: fixed; /* Use fixed position to overlay */
   bottom: 0; /* Position at the bottom */
-  z-index: 2000; /* Higher z-index to overlay action buttons */
+  z-index: 999; /* Higher z-index to overlay action buttons */
   animation: ${scrollUp} 0.1s ease-out;
 `;
 const FeedContainer = styled.div`

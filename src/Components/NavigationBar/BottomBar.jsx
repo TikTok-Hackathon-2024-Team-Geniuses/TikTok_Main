@@ -12,7 +12,6 @@ const BottomBarContainer = styled.div`
   border-top: 1px solid #444;
   border-radius: 20px 20px 0 0;
 
-
   @media (max-width: 768px) {
     padding: 8px 0;
   }
