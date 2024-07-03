@@ -1,0 +1,68 @@
+html {
+  overflow: hidden;
+}
+
+.action__button__container > div {
+  position: fixed;
+  right: 10px;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  gap: 1rem;
+  padding: 2rem 2rem;
+  z-index: 999; /* Ensure this is lower than the bottom bar's z-index */
+}
+
+.action__button__container div > svg {
+  background: black;
+  padding: 0.6rem;
+  border-radius: 20%;
+  font-size: 24px;
+  cursor: pointer;
+  color: pink;
+  transition: color 0.3s;
+}
+
+.action__button__container div > svg:hover {
+  color: #ff0055;
+}
+
+.modal__container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  color: black;
+  top: 10%;
+  transition: all 0.5s ease;
+}
+
+.modal__container.hide {
+  left: -100%;
+}
+
+.modal__container.show {
+  left: 0;
+}
+
+.modal__container > svg {
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  margin: 0.8rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.modal__container > svg:hover {
+  color: white;
+  background: grey;
+  border-radius: 10%;
+}
+
+.modal__container > p {
+  text-align: left;
+}
