@@ -22,7 +22,7 @@ function BoxModal({ toggleBar, isBarOpen }) {
       <div className="infoarea"></div>{" "}
       <div className="modalbuttons">
         <div>See All Details</div>
-        <div>Add To Card</div>
+        <div>Add To Card////////</div>
       </div>
     </Div>
   );

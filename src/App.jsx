@@ -18,7 +18,7 @@ const AppContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 70px); /* Adjust height to fit above bottom bar */
+  height: calc(100vh - 75px); /* Adjust height to fit above bottom bar */
 `;
 
 const StyledBottomBar = styled.div`

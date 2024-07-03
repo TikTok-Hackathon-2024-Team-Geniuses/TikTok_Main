@@ -7,7 +7,7 @@ import styled from "styled-components";
  */
 const StyledVideo = styled.video`
   width: 100%;
-  height: 93vh; 
+  height: 92vh; 
   object-fit: cover;
 `;
 
@@ -32,21 +32,3 @@ const VideoPlayer = ({ src, isVisible }) => {
 };
 
 export default VideoPlayer;
-function BoxModal({ toggleBar, isBarOpen }) {
-  return (
-    <Div className="modal">
-      <button
-        onClick={() => toggleBar()}
-        className={!isBarOpen ? "btnhidden" : "btn"}
-      >
-        Closing Button
-      </button>
-      <div className="photoarea"></div>
-      <div className="infoarea"></div>{" "}
-      <div className="modalbuttons">
-        <div>See All Details</div>
-        <div>Add To Card</div>
-      </div>
-    </Div>
-  );
-}
