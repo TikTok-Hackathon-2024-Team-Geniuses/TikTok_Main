@@ -3,6 +3,7 @@ import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos } from "./FetchVideoData";
 import { useState } from "react";
+import { InfoArea, ItemName, ItemPrice, ItemColor, ColorSwatch, ColorLabel} from './InfoAreaStyles';
 
 const scrollUp = keyframes`
   from {
@@ -13,9 +14,11 @@ const scrollUp = keyframes`
   }
 `;
 const PhotoArea = styled.img`
-margin-top: 80px;
+  margin-top: 70px;
+  width: 200px;
   height: 200px;
-  width: 100px;
+  object-fit: cover;
+  border-radius: 5px;
 `;
 const Div = styled.div`
   height: 80vh; /* 80% of the viewport height */
@@ -32,7 +35,7 @@ const FeedContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: black;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
@@ -90,21 +93,18 @@ const Image = styled.img`
 const BackButton = styled.button`
   /* border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.7em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   position: absolute;
-  top: 30px;
+  top: 10px;
   left: 10px;
   margin-left: 25px; */
-  width: 60px;
+  width: 80px;
   height: 10px;
   background-color: gray;
-  margin-top: 20px;
+  margin-top: 15px;
+  font-size: 0;
 `;
 
 const CartButton = styled.button`
@@ -160,15 +160,17 @@ const VideoItem = ({ videoSrc, images }) => {
     threshold: 0.5, // Adjust threshold as needed
   });
   const [modal, setModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState();
-  function toggleBtn(imgSrc) {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  function toggleBtn(img) {
     setModal(true);
-    setSelectedImage(imgSrc);
+    setSelectedImage(img);
     if (modal) {
       setModal(false);
     }
     console.log(selectedImage);
   }
+
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
@@ -178,11 +180,11 @@ const VideoItem = ({ videoSrc, images }) => {
           <BoxModal toggleBtn={toggleBtn} selectedImage={selectedImage} />
         ) : (
           <BoxContainer>
-            {images.map((imgSrc, index) => (
+            {images.map((img, index) => (
               <Box key={index}>
                 <Image
-                  onClick={() => toggleBtn(imgSrc)}
-                  src={imgSrc}
+                  onClick={() => toggleBtn(img)}
+                  src= {img.src}
                   alt={`Box ${index + 1}`}
                 />
               </Box>
@@ -199,9 +201,16 @@ function BoxModal({ toggleBtn, selectedImage }) {
     <Div className="modal">
       <BackButton onClick={() => toggleBtn()}></BackButton>
       <div>
-        <PhotoArea src={selectedImage} />
+        <PhotoArea src={selectedImage.src} />
       </div>
-      <div className="infoarea"></div>{" "}
+      <InfoArea>
+        <ItemName>{selectedImage.id}</ItemName>
+        <ItemPrice>{selectedImage.price}</ItemPrice>
+        <ItemColor>
+          <ColorSwatch color = {selectedImage.colorCode} />
+          <ColorLabel>Color: {selectedImage.color}</ColorLabel>
+        </ItemColor>
+      </InfoArea>
       <div className="modalbuttons">
         <BuyNowButton onClick={() => toggleBtn()}>Buy now</BuyNowButton>
         <CartButton onClick={() => toggleBtn()}>Add to cart</CartButton>
