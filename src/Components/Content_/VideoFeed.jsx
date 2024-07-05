@@ -1,9 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
-import { videos } from "./FetchVideoData";
+import { videos, svgCategory, interests } from "./FetchVideoData";
 import { useState } from "react";
-import { InfoArea, ItemName, ItemPrice, ItemColor, ColorSwatch, ColorLabel} from './InfoAreaStyles';
+import { BsStars } from "react-icons/bs";
+import {
+  InfoArea,
+  ItemName,
+  ItemPrice,
+  ItemColor,
+  ColorSwatch,
+  ColorLabel,
+} from "./InfoAreaStyles";
 
 const scrollUp = keyframes`
   from {
@@ -110,7 +118,7 @@ const BackButton = styled.button`
 const CartButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: .8em 1.5em;
+  padding: 0.8em 1.5em;
   font-size: 1.1em;
   font-weight: 500;
   font-family: inherit;
@@ -125,7 +133,7 @@ const CartButton = styled.button`
 const BuyNowButton = styled.button`
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: .8em 1.7em;
+  padding: 0.8em 1.7em;
   font-family: inherit;
   font-size: 1.1em;
   background-color: #d1d1d1;
@@ -136,7 +144,27 @@ const BuyNowButton = styled.button`
   left: 80px;
   color: black;
 `;
-
+const AIbutton = styled.img`
+  color: pink;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  margin: 25px;
+`;
+const Svg = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 30px;
+  cursor: pointer;
+`;
+const AIback = styled.div`
+  margin: 30px;
+  width: 100px;
+  height: 30px;
+  background-color: gray;
+`;
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -161,7 +189,7 @@ const VideoItem = ({ videoSrc, images }) => {
   });
   const [modal, setModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [cateModal, setCateModal] = useState(false);
   function toggleBtn(img) {
     setModal(true);
     setSelectedImage(img);
@@ -170,21 +198,26 @@ const VideoItem = ({ videoSrc, images }) => {
     }
     console.log(selectedImage);
   }
-
+  function cateBtn() {
+    setCateModal(true);
+  }
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
 
+      <Svg onClick={() => cateBtn()}>{svgCategory}</Svg>
       <Overlay>
         {modal ? (
           <BoxModal toggleBtn={toggleBtn} selectedImage={selectedImage} />
+        ) : cateModal ? (
+          <InterestsGrid cateBtn={cateBtn} />
         ) : (
           <BoxContainer>
             {images.map((img, index) => (
               <Box key={index}>
                 <Image
                   onClick={() => toggleBtn(img)}
-                  src= {img.src}
+                  src={img.src}
                   alt={`Box ${index + 1}`}
                 />
               </Box>
@@ -197,26 +230,54 @@ const VideoItem = ({ videoSrc, images }) => {
 };
 
 function BoxModal({ toggleBtn, selectedImage }) {
+  const [aibutton, setAibutton] = useState(false);
+
+  const aiToggle = () => {
+    setAibutton((prevState) => !prevState);
+  };
   return (
     <Div className="modal">
-      <BackButton onClick={() => toggleBtn()}></BackButton>
-      <div>
-        <PhotoArea src={selectedImage.src} />
-      </div>
-      <InfoArea>
-        <ItemName>{selectedImage.id}</ItemName>
-        <ItemPrice>{selectedImage.price}</ItemPrice>
-        <ItemColor>
-          <ColorSwatch color = {selectedImage.colorCode} />
-          <ColorLabel>Color: {selectedImage.color}</ColorLabel>
-        </ItemColor>
-      </InfoArea>
-      <div className="modalbuttons">
-        <BuyNowButton onClick={() => toggleBtn()}>Buy now</BuyNowButton>
-        <CartButton onClick={() => toggleBtn()}>Add to cart</CartButton>
-      </div>
+      {aibutton ? (
+        <Iamodal aiToggle={aiToggle} />
+      ) : (
+        <>
+          <BackButton onClick={toggleBtn}>Back</BackButton>
+          <AIbutton src="chat.png" onClick={aiToggle} />
+          <div>
+            <PhotoArea src={selectedImage.src} />
+          </div>
+          <InfoArea>
+            <ItemName>{selectedImage.id}</ItemName>
+            <ItemPrice>{selectedImage.price}</ItemPrice>
+            <ItemColor>
+              <ColorSwatch color={selectedImage.colorCode} />
+              <ColorLabel>Color: {selectedImage.color}</ColorLabel>
+            </ItemColor>
+          </InfoArea>
+          <div className="modalbuttons">
+            <BuyNowButton onClick={toggleBtn}>Buy now</BuyNowButton>
+            <CartButton onClick={toggleBtn}>Add to cart</CartButton>
+          </div>
+        </>
+      )}
     </Div>
   );
 }
+
+const InterestsGrid = () => {
+  return (
+    <div className="interests-grid">
+      {interests.map((interest, index) => (
+        <div key={index} className="interest-item">
+          {interest}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Iamodal = ({ aiToggle }) => {
+  return <AIback onClick={aiToggle}>GO BACK</AIback>;
+};
 
 export default VideoFeed;

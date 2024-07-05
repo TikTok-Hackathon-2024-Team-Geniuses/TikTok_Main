@@ -9,35 +9,35 @@ export const videos = [
         id: "Women's Pink Sweatshirt",
         price: "$35.99",
         color: "Pink",
-        colorCode: "#e5bdd2"
+        colorCode: "#e5bdd2",
       },
       {
         src: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfRU37oeCnyrimWEkpDelrdyxb0Va2TiWvYF3-Zc8VLlWUlNNQG-w_UDqrrS7hFuzUGepV6Ve318C0owJQ4cy1s909xg-GymJ85sJlmLlBs271OS2yqxm6&usqp=CAE",
         id: "adidas Women's Nizza Platform",
         price: "$57.58",
         color: "Core Black",
-        colorCode: "black"
+        colorCode: "black",
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1-9zt0GzBMPTAxVXv-HNMyYMGY1nUGX6ew&s",
         id: "PacSun Light Indigo Grommet Low Rise Baggy Jeans",
         price: "$58.45",
         color: "Light blue",
-        colorCode: "#a7c9e6"
+        colorCode: "#a7c9e6",
       },
       {
         src: "src/Components/Content_/images/image1_4.jpg",
         id: "Women's White Tank",
         price: "$15.99",
         color: "White",
-        colorCode: "white"
+        colorCode: "white",
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9PUKgpvHenZkiAEMGH3g8-Y8in69mpqqXQ&s",
         id: "White gold bracelet",
         price: "$95.99",
         color: "Gold",
-        colorCode: "#f0edd1"
+        colorCode: "#f0edd1",
       },
     ],
   },
@@ -50,35 +50,35 @@ export const videos = [
         id: "",
         price: "",
         color: "",
-        colorCode: ""
+        colorCode: "",
       },
       {
         src: "https://m.media-amazon.com/images/I/71er38OlzHL._SY342_.jpg",
         id: "",
         price: "",
         color: "",
-        colorCode: ""
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image2_4.png",
         id: "",
         price: "",
         color: "",
-        colorCode: ""
+        colorCode: "",
       },
       {
         src: "https://m.media-amazon.com/images/I/71Q70VZAEeL._AC_SX522_.jpg",
         id: "",
         price: "",
         color: "",
-        colorCode: ""
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image2_5.png",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
     ],
   },
@@ -91,35 +91,35 @@ export const videos = [
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image3_2.webp",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://assets.mgimgs.com/mgimgs/ab/images/dp/wcm/202420/0007/img45o.jpg",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://cdni.llbean.net/is/image/wim/212547_1469_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/212547_1469_41",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS_Xy4inSobp8auDoIA6yb3yUYbF37PxUHkOmfV76UsfpoGYVOw6Gl0Fel4xunGFZTdAR0GlR74o6_bdHJRmJUL83zSZaMCrW93NuXnp5cB8-K5C3GWDoNJKr47",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
     ],
   },
@@ -131,35 +131,35 @@ export const videos = [
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://m.media-amazon.com/images/I/517Xg3zPI+L.jpg",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://media.kohlsimg.com/is/image/kohls/5079005?wid=600&hei=600&op_sharpen=1",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://images-na.ssl-images-amazon.com/images/I/21tyWC44aQL._AC_UL210_SR210,210_.jpg",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "https://www.sephora.com/productimages/sku/s2025633-main-zoom.jpg?imwidth=315",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
     ],
   },
@@ -171,36 +171,73 @@ export const videos = [
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image5_2.webp",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image5_3.png",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image5_4.png",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
       {
         src: "src/Components/Content_/images/image5_5.png",
         id: "",
         price: "",
         color: "",
-        colorCode: "" 
+        colorCode: "",
       },
     ],
   },
+];
+
+export const svgCategory = (
+  <svg
+    style={{ width: "30px", height: "30px;", margin: "3px;" }}
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 122.88 121.74"
+  >
+    <title>categories</title>
+    <path d="M5,0H49.39a5,5,0,0,1,3.53,1.47A5,5,0,0,1,54.4,5V49.19a5,5,0,0,1-5,5H5a5,5,0,0,1-3.55-1.47l-.09-.11A5,5,0,0,1,0,49.19V5A5,5,0,0,1,5,0ZM73.49,67.53h44.37a5.05,5.05,0,0,1,5,5v44.17a5,5,0,0,1-5,5H73.49A5,5,0,0,1,70,120.27l-.09-.11a4.94,4.94,0,0,1-1.38-3.44V72.55A5,5,0,0,1,70,69l.1-.1a5,5,0,0,1,3.44-1.38ZM5,67.53H49.39A5,5,0,0,1,52.92,69a4.94,4.94,0,0,1,1.48,3.54v44.17a5,5,0,0,1-5,5H5a5,5,0,0,1-3.55-1.47l-.09-.11A5,5,0,0,1,0,116.72V72.55a5,5,0,0,1,5-5ZM73.49,0h44.37a5,5,0,0,1,5,5V49.19a5,5,0,0,1-5,5H73.49a5,5,0,0,1-5-5V5A5,5,0,0,1,70,1.47l.1-.09A5,5,0,0,1,73.49,0Z" />
+  </svg>
+);
+
+
+export const interests = [
+  "Baking",
+  "Camping",
+  "Cats",
+  "Coastal decor",
+  "Console gaming",
+  "Cooking",
+  "Farmhouse decor",
+  "Family travel",
+  "Hiking",
+  "Photography",
+  "Gardening",
+  "Reading",
+  "DIY projects",
+  "Board games",
+  "Watching movies",
+  "Music",
+  "Yoga",
+  "History",
+  "Art",
+  "Computer",
 ];
