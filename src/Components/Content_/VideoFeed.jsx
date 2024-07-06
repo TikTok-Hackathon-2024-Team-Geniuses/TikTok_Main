@@ -199,18 +199,20 @@ const VideoItem = ({ videoSrc, images }) => {
     console.log(selectedImage);
   }
   function cateBtn() {
-    setCateModal(true);
+    setCateModal((prev) => !prev);
   }
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
-
-      <Svg onClick={() => cateBtn()}>{svgCategory}</Svg>
+ 
+      <Svg style={modal ? { display: "none" } : null} onClick={() => cateBtn()}>
+        {svgCategory}
+      </Svg>
       <Overlay>
         {modal ? (
           <BoxModal toggleBtn={toggleBtn} selectedImage={selectedImage} />
         ) : cateModal ? (
-          <InterestsGrid cateBtn={cateBtn} />
+          <InterestsGrid />
         ) : (
           <BoxContainer>
             {images.map((img, index) => (
