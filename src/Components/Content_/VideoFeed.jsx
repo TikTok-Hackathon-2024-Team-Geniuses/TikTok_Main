@@ -2,8 +2,15 @@ import styled, { keyframes } from "styled-components";
 import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos, svgCategory, interests } from "./FetchVideoData";
+import {product1_1} from "./data1_1";
 import { useState } from "react";
-import { BsStars } from "react-icons/bs";
+import {
+  AIBoxContainer,
+  ProductImage,
+  ProductTitle,
+  ProductRating,
+  ProductPrice,
+} from "./AI_modal";
 import {
   InfoArea,
   ItemName,
@@ -146,11 +153,14 @@ const BuyNowButton = styled.button`
 `;
 const AIbutton = styled.img`
   color: pink;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 0;
-  margin: 25px;
+  margin: 30px;
+  background-color: #7ae6e3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 `;
 const Svg = styled.div`
   position: absolute;
@@ -240,7 +250,7 @@ function BoxModal({ toggleBtn, selectedImage }) {
   return (
     <Div className="modal">
       {aibutton ? (
-        <Iamodal aiToggle={aiToggle} />
+        <AI_modal aiToggle={aiToggle} products={selectedImage.products} />
       ) : (
         <>
           <BackButton onClick={toggleBtn}>Back</BackButton>
@@ -278,8 +288,23 @@ const InterestsGrid = () => {
   );
 };
 
-const Iamodal = ({ aiToggle }) => {
-  return <AIback onClick={aiToggle}>GO BACK</AIback>;
+const AI_modal = ({ aiToggle, products }) => {
+  return (
+    <div style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+      <AIback onClick={aiToggle}>GO BACK</AIback>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        {products.map((product, index) => (
+          <AIBoxContainer key={index}>
+            <ProductImage src={product.link} alt={product.title} />
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductRating>{product.rating}</ProductRating>
+            <ProductPrice>{product.price}</ProductPrice>
+          </AIBoxContainer>
+        ))}
+      </div>
+    </div>
+  );
 };
+
 
 export default VideoFeed;
