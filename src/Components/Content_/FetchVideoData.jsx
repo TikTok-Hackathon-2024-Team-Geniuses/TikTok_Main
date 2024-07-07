@@ -1,5 +1,7 @@
 // FetchVideoData.jsx
 import product1_1 from './data1_1';
+import product1_2 from './data1_2';
+import product1_3 from './data1_3';
 
 export const videos = [
   {
@@ -19,7 +21,7 @@ export const videos = [
         price: "$57.58",
         color: "Core Black",
         colorCode: "black",
-        products: []
+        products: product1_2
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1-9zt0GzBMPTAxVXv-HNMyYMGY1nUGX6ew&s",
@@ -27,7 +29,7 @@ export const videos = [
         price: "$58.45",
         color: "Light blue",
         colorCode: "#a7c9e6",
-        products: []
+        products: product1_3
       },
       {
         src: "src/Components/Content_/images/image1_4.jpg",

@@ -3,6 +3,7 @@ import "./App.css";
 import VideoFeed from "./Components/Content_/VideoFeed";
 import BottomBar from "./Components/NavigationBar/BottomBar";
 import ActionButtons from "./Components/Content_/ActionButtons";
+
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
