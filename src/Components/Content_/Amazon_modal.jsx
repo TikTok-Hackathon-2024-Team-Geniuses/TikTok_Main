@@ -45,7 +45,13 @@ export const StarIcon = styled(FontAwesomeIcon)`
 `;
 
 export const StarRating = ({ rating }) => {
-  // Parse the rating string to extract the numeric rating
+  if (rating === "") {
+    return (
+      <StarContainer>
+        <span>No rating available</span>
+      </StarContainer>
+    );
+  }
   const numericRating = parseFloat(rating.split(" ")[0]);
 
   const solidStars = Math.floor(numericRating); // Number of solid stars
