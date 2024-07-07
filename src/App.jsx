@@ -30,7 +30,7 @@ function App() {
     <AppContainer>
       <AppContent>
         <VideoFeed />
-        <ActionButtons />
+        {/* <ActionButtons /> */}
       </AppContent>
       <StyledBottomBar />
     </AppContainer>

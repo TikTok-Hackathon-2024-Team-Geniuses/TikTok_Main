@@ -29,7 +29,7 @@ const PhotoArea = styled.img`
   border-radius: 5px;
 `;
 const Div = styled.div`
-  height: 80vh; /* 80% of the viewport height */
+  height: 85vh; /* 80% of the viewport height */
   width: 100%; /* 100% of the viewport width */
   background-color: white;
   transform: translateY(20vh);
@@ -159,11 +159,22 @@ const Svg = styled.div`
   margin: 30px;
   cursor: pointer;
 `;
-const AIback = styled.div`
+const AIback = styled.img`
   margin: 30px;
-  width: 100px;
+  margin-left: 50px;
+  width: 30px;
   height: 30px;
-  background-color: gray;
+  position: absolute;
+  left: 0px;
+`;
+
+const AILogo = styled.img`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400%);
 `;
 /**
  * VideoFeed component that renders a list of VideoItem components,
@@ -204,7 +215,7 @@ const VideoItem = ({ videoSrc, images }) => {
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
- 
+
       <Svg style={modal ? { display: "none" } : null} onClick={() => cateBtn()}>
         {svgCategory}
       </Svg>
@@ -240,10 +251,17 @@ function BoxModal({ toggleBtn, selectedImage }) {
   return (
     <Div className="modal">
       {aibutton ? (
-        <Iamodal aiToggle={aiToggle} />
+        <div>
+          <Iamodal aiToggle={aiToggle} />
+          <AILogo src="chat.png" />{" "}
+          <div className="suggestions">
+            <div className="texts">Learn cool facts about this product</div>
+            <div className="texts">Fact check this product</div>
+          </div>
+        </div>
       ) : (
         <>
-          <BackButton onClick={toggleBtn}>Back</BackButton>
+          <BackButton onClick={toggleBtn}></BackButton>
           <AIbutton src="chat.png" onClick={aiToggle} />
           <div>
             <PhotoArea src={selectedImage.src} />
@@ -279,7 +297,7 @@ const InterestsGrid = () => {
 };
 
 const Iamodal = ({ aiToggle }) => {
-  return <AIback onClick={aiToggle}>GO BACK</AIback>;
+  return <AIback src="back.png" onClick={aiToggle}></AIback>;
 };
 
 export default VideoFeed;
