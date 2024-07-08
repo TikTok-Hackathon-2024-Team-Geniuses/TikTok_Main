@@ -3,7 +3,14 @@ import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos, svgCategory, interests } from "./FetchVideoData";
 import { useState } from "react";
-import { BsStars } from "react-icons/bs";
+import {
+  ProductImage,
+  ProductTitle,
+  ProductRating,
+  ProductPrice,
+  AmazonBoxContainer,
+  StarRating,
+} from "./Amazon_modal";
 import {
   InfoArea,
   ItemName,
@@ -165,6 +172,48 @@ const AIback = styled.div`
   height: 30px;
   background-color: gray;
 `;
+const SimilarBack = styled.div`
+  margin: 30px;
+  width: 100px;
+  height: 30px;
+  background-color: #a3f0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: .6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: .7em;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
+const SimilarButtonstyle = styled.button`
+  width: 100px;
+  height: 35px;
+  position: absolute;
+  left: 0px;
+  margin: 45px;
+  background-color: #a3f0ff;
+  border: .6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: .7em;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
+const AmazonContainer = styled.div`
+  max-height: 67vh;
+  overflow-y: auto;
+  padding-right: 15px; /* Adjust for scrollbar width */
+`;
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -233,18 +282,27 @@ const VideoItem = ({ videoSrc, images }) => {
 
 function BoxModal({ toggleBtn, selectedImage }) {
   const [aibutton, setAibutton] = useState(false);
+  const [similarbutton, setSimilarbutton] = useState(false);
 
   const aiToggle = () => {
     setAibutton((prevState) => !prevState);
   };
+  
+  const similarToggle = () => {
+    setSimilarbutton((prevState) => !prevState);
+  };
+
   return (
     <Div className="modal">
       {aibutton ? (
-        <Iamodal aiToggle={aiToggle} />
+        <Iamodal aiToggle={aiToggle}/>
+      ) : similarbutton ? (
+        <Amazonmodal similarToggle={similarToggle} products={selectedImage.products} />
       ) : (
         <>
           <BackButton onClick={toggleBtn}>Back</BackButton>
           <AIbutton src="chat.png" onClick={aiToggle} />
+          <SimilarButtonstyle onClick={similarToggle}>Similar products</SimilarButtonstyle>
           <div>
             <PhotoArea src={selectedImage.src} />
           </div>
@@ -281,5 +339,25 @@ const InterestsGrid = () => {
 const Iamodal = ({ aiToggle }) => {
   return <AIback onClick={aiToggle}>GO BACK</AIback>;
 };
+
+const Amazonmodal = ({ similarToggle, products }) => {
+  return (
+    <AmazonContainer>
+      <SimilarBack onClick={similarToggle}>GO BACK</SimilarBack>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        {products.map((product, index) => (
+          <AmazonBoxContainer key={index}>
+            <ProductImage src={product.link} alt={product.title} />
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductRating><StarRating rating={product.rating} />
+            </ProductRating>
+            <ProductPrice>{product.price}</ProductPrice>
+          </AmazonBoxContainer>
+        ))}
+      </div>
+    </AmazonContainer>
+  );
+};
+
 
 export default VideoFeed;
