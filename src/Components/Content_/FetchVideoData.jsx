@@ -1,4 +1,7 @@
 // FetchVideoData.jsx
+import product1_1 from './data1_1';
+import product1_2 from './data1_2';
+import product1_3 from './data1_3';
 
 export const videos = [
   {
@@ -10,6 +13,7 @@ export const videos = [
         price: "$35.99",
         color: "Pink",
         colorCode: "#e5bdd2",
+        products: product1_1
       },
       {
         src: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfRU37oeCnyrimWEkpDelrdyxb0Va2TiWvYF3-Zc8VLlWUlNNQG-w_UDqrrS7hFuzUGepV6Ve318C0owJQ4cy1s909xg-GymJ85sJlmLlBs271OS2yqxm6&usqp=CAE",
@@ -17,6 +21,7 @@ export const videos = [
         price: "$57.58",
         color: "Core Black",
         colorCode: "black",
+        products: product1_2
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1-9zt0GzBMPTAxVXv-HNMyYMGY1nUGX6ew&s",
@@ -24,6 +29,7 @@ export const videos = [
         price: "$58.45",
         color: "Light blue",
         colorCode: "#a7c9e6",
+        products: product1_3
       },
       {
         src: "src/Components/Content_/images/image1_4.jpg",
@@ -31,6 +37,7 @@ export const videos = [
         price: "$15.99",
         color: "White",
         colorCode: "white",
+        products: []
       },
       {
         src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9PUKgpvHenZkiAEMGH3g8-Y8in69mpqqXQ&s",
@@ -38,6 +45,7 @@ export const videos = [
         price: "$95.99",
         color: "Gold",
         colorCode: "#f0edd1",
+        products: []
       },
     ],
   },

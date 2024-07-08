@@ -3,7 +3,14 @@ import VideoPlayer from "./VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { videos, svgCategory, interests } from "./FetchVideoData";
 import { useState } from "react";
-import { BsStars } from "react-icons/bs";
+import {
+  ProductImage,
+  ProductTitle,
+  ProductRating,
+  ProductPrice,
+  AmazonBoxContainer,
+  StarRating,
+} from "./Amazon_modal";
 import {
   InfoArea,
   ItemName,
@@ -200,6 +207,48 @@ const Message = styled.div`
   margin-bottom: 0.31em;
   word-wrap: break-word;
 `;
+const SimilarBack = styled.div`
+  margin: 30px;
+  width: 100px;
+  height: 30px;
+  background-color: #a3f0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.7em;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
+const SimilarButtonstyle = styled.button`
+  width: 100px;
+  height: 35px;
+  position: absolute;
+  left: 0px;
+  margin: 45px;
+  background-color: #a3f0ff;
+  border: 0.6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.7em;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
+const AmazonContainer = styled.div`
+  max-height: 67vh;
+  overflow-y: auto;
+  padding-right: 15px; /* Adjust for scrollbar width */
+`;
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -268,77 +317,96 @@ const VideoItem = ({ videoSrc, images }) => {
 
 function BoxModal({ toggleBtn, selectedImage }) {
   const [aibutton, setAibutton] = useState(false);
+
   const [message, setMessage] = useState(false);
+  const [similarbutton, setSimilarbutton] = useState(false);
+
   const aiToggle = () => {
     setAibutton((prevState) => !prevState);
     setMessage(false);
   };
   const messageToggle = () => {
     setMessage(true);
-  };
 
-  return (
-    <Div className="modal">
-      {aibutton ? (
-        <div>
-          <Iamodal aiToggle={aiToggle} />
-          {message ? (
-            <div>
-              <UserMessage style={{ color: "black" }}>
-                {" "}
-                <Message> Learn cool facts about this product </Message>
-              </UserMessage>
-              <div style={{ color: "black" }} className="aimessage">
-                <div className="message">
-                  <p>
-                    Sunshine Vitamin: Vitamin D3, also known as cholecalciferol,
-                    is produced in your skin in response to sunlight exposure.
-                    It's often called the "sunshine vitamin." Bone Health:
-                    Vitamin D3 is crucial for calcium absorption, which is
-                    essential for maintaining strong bones and teeth. It helps
-                    prevent conditions like osteoporosis and rickets.
-                  </p>
-                </div>
-              </div>
-              <input className="AIinput" placeholder="Message" />;
-            </div>
-          ) : (
-            <div className="suggestions">
-              <AILogo src="chat.png" />{" "}
-              <div
-                className="texts"
-                onClick={() => {
-                  messageToggle();
-                }}
-              >
-                Learn cool facts about this product
-              </div>
-            </div>
-          )}
-        </div>
-      ) : (
-        <>
-          <BackButton onClick={toggleBtn}></BackButton>
-          <AIbutton src="chat.png" onClick={aiToggle} />
+    const similarToggle = () => {
+      setSimilarbutton((prevState) => !prevState);
+    };
+
+    return (
+      <Div className="modal">
+        {aibutton ? (
           <div>
-            <PhotoArea src={selectedImage.src} />
+            <div>
+              <Iamodal aiToggle={aiToggle} />
+              {message ? (
+                <div>
+                  <UserMessage style={{ color: "black" }}>
+                    {" "}
+                    <Message> Learn cool facts about this product </Message>
+                  </UserMessage>
+                  <div style={{ color: "black" }} className="aimessage">
+                    <div className="message">
+                      <p>
+                        Sunshine Vitamin: Vitamin D3, also known as
+                        cholecalciferol, is produced in your skin in response to
+                        sunlight exposure. It's often called the "sunshine
+                        vitamin." Bone Health: Vitamin D3 is crucial for calcium
+                        absorption, which is essential for maintaining strong
+                        bones and teeth. It helps prevent conditions like
+                        osteoporosis and rickets.
+                      </p>
+                    </div>
+                  </div>
+                  <input className="AIinput" placeholder="Message" />;
+                </div>
+              ) : (
+                <div className="suggestions">
+                  <AILogo src="chat.png" />{" "}
+                  <div
+                    className="texts"
+                    onClick={() => {
+                      messageToggle();
+                    }}
+                  >
+                    Learn cool facts about this product
+                  </div>
+                </div>
+              )}
+            </div>
+            <Iamodal aiToggle={aiToggle} />
           </div>
-          <InfoArea>
-            <ItemName>{selectedImage.id}</ItemName>
-            <ItemPrice>{selectedImage.price}</ItemPrice>
-            <ItemColor>
-              <ColorSwatch color={selectedImage.colorCode} />
-              <ColorLabel>Color: {selectedImage.color}</ColorLabel>
-            </ItemColor>
-          </InfoArea>
-          <div className="modalbuttons">
-            <BuyNowButton onClick={toggleBtn}>Buy now</BuyNowButton>
-            <CartButton onClick={toggleBtn}>Add to cart</CartButton>
-          </div>
-        </>
-      )}
-    </Div>
-  );
+        ) : similarbutton ? (
+          <Amazonmodal
+            similarToggle={similarToggle}
+            products={selectedImage.products}
+          />
+        ) : (
+          <>
+            <BackButton onClick={toggleBtn}></BackButton>
+            <AIbutton src="chat.png" onClick={aiToggle} />
+            <SimilarButtonstyle onClick={similarToggle}>
+              Similar products
+            </SimilarButtonstyle>
+            <div>
+              <PhotoArea src={selectedImage.src} />
+            </div>
+            <InfoArea>
+              <ItemName>{selectedImage.id}</ItemName>
+              <ItemPrice>{selectedImage.price}</ItemPrice>
+              <ItemColor>
+                <ColorSwatch color={selectedImage.colorCode} />
+                <ColorLabel>Color: {selectedImage.color}</ColorLabel>
+              </ItemColor>
+            </InfoArea>
+            <div className="modalbuttons">
+              <BuyNowButton onClick={toggleBtn}>Buy now</BuyNowButton>
+              <CartButton onClick={toggleBtn}>Add to cart</CartButton>
+            </div>
+          </>
+        )}
+      </Div>
+    );
+  };
 }
 
 const InterestsGrid = () => {
@@ -355,6 +423,28 @@ const InterestsGrid = () => {
 
 const Iamodal = ({ aiToggle }) => {
   return <AIback src="back.png" onClick={aiToggle}></AIback>;
+};
+
+const Amazonmodal = ({ similarToggle, products }) => {
+  return (
+    <AmazonContainer>
+      <SimilarBack onClick={similarToggle}>GO BACK</SimilarBack>
+      <div
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
+        {products.map((product, index) => (
+          <AmazonBoxContainer key={index}>
+            <ProductImage src={product.link} alt={product.title} />
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductRating>
+              <StarRating rating={product.rating} />
+            </ProductRating>
+            <ProductPrice>{product.price}</ProductPrice>
+          </AmazonBoxContainer>
+        ))}
+      </div>
+    </AmazonContainer>
+  );
 };
 
 export default VideoFeed;
