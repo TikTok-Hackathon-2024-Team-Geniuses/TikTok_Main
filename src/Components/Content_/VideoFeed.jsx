@@ -36,13 +36,14 @@ const PhotoArea = styled.img`
   border-radius: 5px;
 `;
 const Div = styled.div`
-  height: 80vh; /* 80% of the viewport height */
+  height: 85vh; /* 80% of the viewport height */
   width: 100%; /* 100% of the viewport width */
   background-color: white;
   transform: translateY(20vh);
   border-radius: 25px 25px 0 0;
   position: relative;
   animation: ${scrollUp} 0.1s ease-out;
+  overflow-y: scroll;
 `;
 
 const FeedContainer = styled.div`
@@ -166,11 +167,62 @@ const Svg = styled.div`
   margin: 30px;
   cursor: pointer;
 `;
-const AIback = styled.div`
+const AIback = styled.img`
   margin: 30px;
-  width: 100px;
+  margin-left: 50px;
+  width: 30px;
   height: 30px;
-  background-color: gray;
+  position: absolute;
+  left: 0px;
+`;
+
+const AILogo = styled.img`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400%);
+`;
+const SimilarButtonstyle = styled.button`
+  width: 100px;
+  height: 35px;
+  position: absolute;
+  left: 0px;
+  margin: 45px;
+  background-color: #a3f0ff;
+  border: 0.6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.7em;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
+const UserMessage = styled.div`
+  padding: 0.625em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background-color: #1c9bef;
+  position: absolute;
+  right: 0;
+  top: 150px;
+  padding: 20px;
+  margin-right: -7px;
+`;
+
+const AIMessage = styled.div`
+  color: black;
+`;
+const Message = styled.div`
+  font-size: 1em;
+  margin-bottom: 0.31em;
+  word-wrap: break-word;
 `;
 const SimilarBack = styled.div`
   margin: 30px;
@@ -180,10 +232,10 @@ const SimilarBack = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: .6px solid black; /* Dark cyan border */
+  border: 0.6px solid black; /* Dark cyan border */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  font-size: .7em;
+  font-size: 0.7em;
   color: black;
   cursor: pointer;
 
@@ -191,29 +243,13 @@ const SimilarBack = styled.div`
     background-color: #75dcf0;
   }
 `;
-const SimilarButtonstyle = styled.button`
-  width: 100px;
-  height: 35px;
-  position: absolute;
-  left: 0px;
-  margin: 45px;
-  background-color: #a3f0ff;
-  border: .6px solid black; /* Dark cyan border */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  font-size: .7em;
-  color: black;
-  cursor: pointer;
 
-  &:hover {
-    background-color: #75dcf0;
-  }
-`;
 const AmazonContainer = styled.div`
   max-height: 67vh;
   overflow-y: auto;
   padding-right: 15px; /* Adjust for scrollbar width */
 `;
+
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -247,13 +283,14 @@ const VideoItem = ({ videoSrc, images }) => {
     }
     console.log(selectedImage);
   }
+
   function cateBtn() {
     setCateModal((prev) => !prev);
   }
   return (
     <VideoItemContainer ref={ref}>
       <VideoPlayer src={videoSrc} isVisible={inView} />
- 
+
       <Svg style={modal ? { display: "none" } : null} onClick={() => cateBtn()}>
         {svgCategory}
       </Svg>
@@ -279,33 +316,77 @@ const VideoItem = ({ videoSrc, images }) => {
     </VideoItemContainer>
   );
 };
-
 function BoxModal({ toggleBtn, selectedImage }) {
   const [aibutton, setAibutton] = useState(false);
   const [similarbutton, setSimilarbutton] = useState(false);
+  const [message, setMessage] = useState(false);
 
   const aiToggle = () => {
     setAibutton((prevState) => !prevState);
+    setMessage(false);
   };
-  
+
   const similarToggle = () => {
     setSimilarbutton((prevState) => !prevState);
+  };
+
+  const messageToggle = () => {
+    setMessage(true); // Toggle message state
   };
 
   return (
     <Div className="modal">
       {aibutton ? (
-        <Iamodal aiToggle={aiToggle}/>
+        <>
+          <Iamodal aiToggle={aiToggle} />
+          {message ? (
+            <div>
+              <UserMessage style={{ color: "black" }}>
+                {" "}
+                <Message> Learn cool facts about this product </Message>
+              </UserMessage>
+              <div style={{ color: "black" }} className="aimessage">
+                <div className="message">
+                  <p>
+                    Sunshine Vitamin: Vitamin D3, also known as cholecalciferol,
+                    is produced in your skin in response to sunlight exposure.
+                    It's often called the "sunshine vitamin." Bone Health:
+                    Vitamin D3 is crucial for calcium absorption, which is
+                    essential for maintaining strong bones and teeth. It helps
+                    prevent conditions like osteoporosis and rickets.
+                  </p>
+                </div>
+              </div>
+              <input className="AIinput" placeholder="Message" />;
+            </div>
+          ) : (
+            <div className="suggestions">
+              <AILogo src="chat.png" />{" "}
+              <div
+                className="texts"
+                onClick={() => {
+                  messageToggle();
+                }}
+              >
+                Learn cool facts about this product
+              </div>
+            </div>
+          )}
+        </>
       ) : similarbutton ? (
-        <Amazonmodal similarToggle={similarToggle} products={selectedImage.products} />
+        <Amazonmodal
+          similarToggle={similarToggle}
+          products={selectedImage.products}
+        />
       ) : (
         <>
           <BackButton onClick={toggleBtn}>Back</BackButton>
           <AIbutton src="chat.png" onClick={aiToggle} />
-          <SimilarButtonstyle onClick={similarToggle}>Similar products</SimilarButtonstyle>
-          <div>
-            <PhotoArea src={selectedImage.src} />
-          </div>
+          <SimilarButtonstyle onClick={similarToggle}>
+            Similar products
+          </SimilarButtonstyle>
+          <div></div>
+          <PhotoArea src={selectedImage.src} />
           <InfoArea>
             <ItemName>{selectedImage.id}</ItemName>
             <ItemPrice>{selectedImage.price}</ItemPrice>
@@ -337,19 +418,22 @@ const InterestsGrid = () => {
 };
 
 const Iamodal = ({ aiToggle }) => {
-  return <AIback onClick={aiToggle}>GO BACK</AIback>;
+  return <AIback src="back.png" onClick={aiToggle}></AIback>;
 };
 
 const Amazonmodal = ({ similarToggle, products }) => {
   return (
     <AmazonContainer>
       <SimilarBack onClick={similarToggle}>GO BACK</SimilarBack>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+      <div
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
         {products.map((product, index) => (
           <AmazonBoxContainer key={index}>
             <ProductImage src={product.link} alt={product.title} />
             <ProductTitle>{product.title}</ProductTitle>
-            <ProductRating><StarRating rating={product.rating} />
+            <ProductRating>
+              <StarRating rating={product.rating} />
             </ProductRating>
             <ProductPrice>{product.price}</ProductPrice>
           </AmazonBoxContainer>
@@ -358,6 +442,5 @@ const Amazonmodal = ({ similarToggle, products }) => {
     </AmazonContainer>
   );
 };
-
 
 export default VideoFeed;

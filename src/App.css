@@ -99,7 +99,47 @@ body {
   }
 }
 
-.photoarea{
+.photoarea {
   height: 10px;
   width: 10px;
+}
+.hey {
+  background-color: red;
+}
+.texts {
+  color: black;
+  border: 1px solid gray;
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.suggestions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  display: flex;
+  gap: 30px;
+}
+
+.aimessage {
+  position: absolute;
+  top: 18em;
+  background-color: #3d5365;
+  padding: 10px;
+  border-radius: 1em;
+  text-align: left;
+}
+.AIinput {
+  border-radius: 5px;
+  width: 32em;
+  height: 35px;
+  position: absolute;
+  top: 41.9em;
+  display: flex;
 }
