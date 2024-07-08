@@ -126,3 +126,20 @@ body {
   display: flex;
   gap: 30px;
 }
+
+.aimessage {
+  position: absolute;
+  top: 18em;
+  background-color: #3d5365;
+  padding: 10px;
+  border-radius: 1em;
+  text-align: left;
+}
+.AIinput {
+  border-radius: 5px;
+  width: 32em;
+  height: 35px;
+  position: absolute;
+  top: 41.9em;
+  display: flex;
+}

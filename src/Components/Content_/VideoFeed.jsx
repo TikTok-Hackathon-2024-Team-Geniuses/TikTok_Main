@@ -36,6 +36,7 @@ const Div = styled.div`
   border-radius: 25px 25px 0 0;
   position: relative;
   animation: ${scrollUp} 0.1s ease-out;
+  overflow-y: scroll;
 `;
 
 const FeedContainer = styled.div`
@@ -176,6 +177,29 @@ const AILogo = styled.img`
   left: 50%;
   transform: translate(-50%, -400%);
 `;
+
+const UserMessage = styled.div`
+  padding: 0.625em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background-color: #1c9bef;
+  position: absolute;
+  right: 0;
+  top: 150px;
+  padding: 20px;
+  margin-right: -7px;
+`;
+
+const AIMessage = styled.div`
+  color: black;
+`;
+const Message = styled.div`
+  font-size: 1em;
+  margin-bottom: 0.31em;
+  word-wrap: break-word;
+`;
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -244,20 +268,53 @@ const VideoItem = ({ videoSrc, images }) => {
 
 function BoxModal({ toggleBtn, selectedImage }) {
   const [aibutton, setAibutton] = useState(false);
-
+  const [message, setMessage] = useState(false);
   const aiToggle = () => {
     setAibutton((prevState) => !prevState);
+    setMessage(false);
   };
+  const messageToggle = () => {
+    setMessage(true);
+  };
+
   return (
     <Div className="modal">
       {aibutton ? (
         <div>
           <Iamodal aiToggle={aiToggle} />
-          <AILogo src="chat.png" />{" "}
-          <div className="suggestions">
-            <div className="texts">Learn cool facts about this product</div>
-            <div className="texts">Fact check this product</div>
-          </div>
+          {message ? (
+            <div>
+              <UserMessage style={{ color: "black" }}>
+                {" "}
+                <Message> Learn cool facts about this product </Message>
+              </UserMessage>
+              <div style={{ color: "black" }} className="aimessage">
+                <div className="message">
+                  <p>
+                    Sunshine Vitamin: Vitamin D3, also known as cholecalciferol,
+                    is produced in your skin in response to sunlight exposure.
+                    It's often called the "sunshine vitamin." Bone Health:
+                    Vitamin D3 is crucial for calcium absorption, which is
+                    essential for maintaining strong bones and teeth. It helps
+                    prevent conditions like osteoporosis and rickets.
+                  </p>
+                </div>
+              </div>
+              <input className="AIinput" placeholder="Message" />;
+            </div>
+          ) : (
+            <div className="suggestions">
+              <AILogo src="chat.png" />{" "}
+              <div
+                className="texts"
+                onClick={() => {
+                  messageToggle();
+                }}
+              >
+                Learn cool facts about this product
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <>
