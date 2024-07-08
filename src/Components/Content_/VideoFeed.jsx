@@ -184,7 +184,24 @@ const AILogo = styled.img`
   left: 50%;
   transform: translate(-50%, -400%);
 `;
+const SimilarButtonstyle = styled.button`
+  width: 100px;
+  height: 35px;
+  position: absolute;
+  left: 0px;
+  margin: 45px;
+  background-color: #a3f0ff;
+  border: 0.6px solid black; /* Dark cyan border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.7em;
+  color: black;
+  cursor: pointer;
 
+  &:hover {
+    background-color: #75dcf0;
+  }
+`;
 const UserMessage = styled.div`
   padding: 0.625em;
   border-radius: 1em;
@@ -226,71 +243,13 @@ const SimilarBack = styled.div`
     background-color: #75dcf0;
   }
 `;
-const SimilarButtonstyle = styled.button`
-  width: 100px;
-  height: 35px;
-  position: absolute;
-  left: 0px;
-  margin: 45px;
-  background-color: #a3f0ff;
-  border: 0.6px solid black; /* Dark cyan border */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  font-size: 0.7em;
-  color: black;
-  cursor: pointer;
 
-  &:hover {
-    background-color: #75dcf0;
-  }
-`;
 const AmazonContainer = styled.div`
   max-height: 67vh;
   overflow-y: auto;
   padding-right: 15px; /* Adjust for scrollbar width */
 `;
-const SimilarBack = styled.div`
-  margin: 30px;
-  width: 100px;
-  height: 30px;
-  background-color: #a3f0ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: .6px solid black; /* Dark cyan border */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  font-size: .7em;
-  color: black;
-  cursor: pointer;
 
-  &:hover {
-    background-color: #75dcf0;
-  }
-`;
-const SimilarButtonstyle = styled.button`
-  width: 100px;
-  height: 35px;
-  position: absolute;
-  left: 0px;
-  margin: 45px;
-  background-color: #a3f0ff;
-  border: .6px solid black; /* Dark cyan border */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  font-size: .7em;
-  color: black;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #75dcf0;
-  }
-`;
-const AmazonContainer = styled.div`
-  max-height: 67vh;
-  overflow-y: auto;
-  padding-right: 15px; /* Adjust for scrollbar width */
-`;
 /**
  * VideoFeed component that renders a list of VideoItem components,
  * each containing a video player.
@@ -324,6 +283,7 @@ const VideoItem = ({ videoSrc, images }) => {
     }
     console.log(selectedImage);
   }
+
   function cateBtn() {
     setCateModal((prev) => !prev);
   }
@@ -356,13 +316,10 @@ const VideoItem = ({ videoSrc, images }) => {
     </VideoItemContainer>
   );
 };
-
 function BoxModal({ toggleBtn, selectedImage }) {
   const [aibutton, setAibutton] = useState(false);
   const [similarbutton, setSimilarbutton] = useState(false);
-
   const [message, setMessage] = useState(false);
-  // const [similarbutton, setSimilarbutton] = useState(false);
 
   const aiToggle = () => {
     setAibutton((prevState) => !prevState);
@@ -373,90 +330,80 @@ function BoxModal({ toggleBtn, selectedImage }) {
     setSimilarbutton((prevState) => !prevState);
   };
 
+  const messageToggle = () => {
+    setMessage(true); // Toggle message state
+  };
+
   return (
     <Div className="modal">
       {aibutton ? (
-        <Iamodal aiToggle={aiToggle}/>
+        <>
+          <Iamodal aiToggle={aiToggle} />
+          {message ? (
+            <div>
+              <UserMessage style={{ color: "black" }}>
+                {" "}
+                <Message> Learn cool facts about this product </Message>
+              </UserMessage>
+              <div style={{ color: "black" }} className="aimessage">
+                <div className="message">
+                  <p>
+                    Sunshine Vitamin: Vitamin D3, also known as cholecalciferol,
+                    is produced in your skin in response to sunlight exposure.
+                    It's often called the "sunshine vitamin." Bone Health:
+                    Vitamin D3 is crucial for calcium absorption, which is
+                    essential for maintaining strong bones and teeth. It helps
+                    prevent conditions like osteoporosis and rickets.
+                  </p>
+                </div>
+              </div>
+              <input className="AIinput" placeholder="Message" />;
+            </div>
+          ) : (
+            <div className="suggestions">
+              <AILogo src="chat.png" />{" "}
+              <div
+                className="texts"
+                onClick={() => {
+                  messageToggle();
+                }}
+              >
+                Learn cool facts about this product
+              </div>
+            </div>
+          )}
+        </>
       ) : similarbutton ? (
-        <Amazonmodal similarToggle={similarToggle} products={selectedImage.products} />
+        <Amazonmodal
+          similarToggle={similarToggle}
+          products={selectedImage.products}
+        />
       ) : (
         <>
           <BackButton onClick={toggleBtn}>Back</BackButton>
           <AIbutton src="chat.png" onClick={aiToggle} />
-          <SimilarButtonstyle onClick={similarToggle}>Similar products</SimilarButtonstyle>
-          <div>
-            <div>
-              <Iamodal aiToggle={aiToggle} />
-              {message ? (
-                <div>
-                  <UserMessage style={{ color: "black" }}>
-                    {" "}
-                    <Message> Learn cool facts about this product </Message>
-                  </UserMessage>
-                  <div style={{ color: "black" }} className="aimessage">
-                    <div className="message">
-                      <p>
-                        Sunshine Vitamin: Vitamin D3, also known as
-                        cholecalciferol, is produced in your skin in response to
-                        sunlight exposure. It's often called the "sunshine
-                        vitamin." Bone Health: Vitamin D3 is crucial for calcium
-                        absorption, which is essential for maintaining strong
-                        bones and teeth. It helps prevent conditions like
-                        osteoporosis and rickets.
-                      </p>
-                    </div>
-                  </div>
-                  <input className="AIinput" placeholder="Message" />;
-                </div>
-              ) : (
-                <div className="suggestions">
-                  <AILogo src="chat.png" />{" "}
-                  <div
-                    className="texts"
-                    onClick={() => {
-                      messageToggle();
-                    }}
-                  >
-                    Learn cool facts about this product
-                  </div>
-                </div>
-              )}
-            </div>
-            <Iamodal aiToggle={aiToggle} />
+          <SimilarButtonstyle onClick={similarToggle}>
+            Similar products
+          </SimilarButtonstyle>
+          <div></div>
+          <PhotoArea src={selectedImage.src} />
+          <InfoArea>
+            <ItemName>{selectedImage.id}</ItemName>
+            <ItemPrice>{selectedImage.price}</ItemPrice>
+            <ItemColor>
+              <ColorSwatch color={selectedImage.colorCode} />
+              <ColorLabel>Color: {selectedImage.color}</ColorLabel>
+            </ItemColor>
+          </InfoArea>
+          <div className="modalbuttons">
+            <BuyNowButton onClick={toggleBtn}>Buy now</BuyNowButton>
+            <CartButton onClick={toggleBtn}>Add to cart</CartButton>
           </div>
-        ) : similarbutton ? (
-          <Amazonmodal
-            similarToggle={similarToggle}
-            products={selectedImage.products}
-          />
-        ) : (
-          <>
-            <BackButton onClick={toggleBtn}></BackButton>
-            <AIbutton src="chat.png" onClick={aiToggle} />
-            <SimilarButtonstyle onClick={similarToggle}>
-              Similar products
-            </SimilarButtonstyle>
-            <div>
-              <PhotoArea src={selectedImage.src} />
-            </div>
-            <InfoArea>
-              <ItemName>{selectedImage.id}</ItemName>
-              <ItemPrice>{selectedImage.price}</ItemPrice>
-              <ItemColor>
-                <ColorSwatch color={selectedImage.colorCode} />
-                <ColorLabel>Color: {selectedImage.color}</ColorLabel>
-              </ItemColor>
-            </InfoArea>
-            <div className="modalbuttons">
-              <BuyNowButton onClick={toggleBtn}>Buy now</BuyNowButton>
-              <CartButton onClick={toggleBtn}>Add to cart</CartButton>
-            </div>
-          </>
-        )}
-      </Div>
-    );
-  };
-
+        </>
+      )}
+    </Div>
+  );
+}
 
 const InterestsGrid = () => {
   return (
@@ -474,7 +421,7 @@ const Iamodal = ({ aiToggle }) => {
   return <AIback src="back.png" onClick={aiToggle}></AIback>;
 };
 
-{/* const Amazonmodal = ({ similarToggle, products }) => {
+const Amazonmodal = ({ similarToggle, products }) => {
   return (
     <AmazonContainer>
       <SimilarBack onClick={similarToggle}>GO BACK</SimilarBack>
@@ -494,26 +441,6 @@ const Iamodal = ({ aiToggle }) => {
       </div>
     </AmazonContainer>
   );
-}; */}
-
-const Amazonmodal = ({ similarToggle, products }) => {
-  return (
-    <AmazonContainer>
-      <SimilarBack onClick={similarToggle}>GO BACK</SimilarBack>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        {products.map((product, index) => (
-          <AmazonBoxContainer key={index}>
-            <ProductImage src={product.link} alt={product.title} />
-            <ProductTitle>{product.title}</ProductTitle>
-            <ProductRating><StarRating rating={product.rating} />
-            </ProductRating>
-            <ProductPrice>{product.price}</ProductPrice>
-          </AmazonBoxContainer>
-        ))}
-      </div>
-    </AmazonContainer>
-  );
 };
-
 
 export default VideoFeed;
