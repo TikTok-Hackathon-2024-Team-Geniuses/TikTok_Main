@@ -2,6 +2,8 @@
 
 Welcome to the TikTok Feature project built with React and Vite! This project features a video feed with a bottom navigation bar, closely mimicking the UI and functionality of the TikTok app. Exciting updates and new features are on the way!
 
+Demo here: https://www.youtube.com/watch?v=6p3qW0eJgs8
+
 ## ✨ Features
 
 - 🎬 **Video feed with auto-playing videos**
